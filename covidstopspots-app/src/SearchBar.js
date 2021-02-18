@@ -7,7 +7,7 @@ class SearchBar extends React.Component {
     return (
       <ChakraProvider resetCSS = {true}>
         <div>
-          <input id="searchbar"></input>
+          type address: <input id="searchbar"></input>
         </div>
       </ChakraProvider>
     )
