@@ -10,13 +10,28 @@ body {
 }
 
 #map {
-  display: block;
-  margin-top: 10px;
-  padding: auto;
+  position: relative;
+  padding-top: 10px;
 }
 
 #title {
   display: block;
   text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#searchbar {
+  margin: auto;
+  width: 50%;
+  padding: 5px;
+  display: block;
+  position: absolute;
+  border-radius: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(177, 207, 202);
+  top: 25px;
+  left: 375px;
+  z-index: 3000;
+  background-color: rgb(33, 105, 212);
+  text-align: center;
 }

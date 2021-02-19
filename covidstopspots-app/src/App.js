@@ -28,7 +28,7 @@ class App extends React.Component {
               CovidStopSpots
             </h1>
               <p>A responsive tracker for Covid-19.</p>
-          <SearchBar changePos = {this.changePos.bind(this)}></SearchBar>
+          
           </div>
           <div id="map">
             <MapContainer center={[43.653225, -79.383186]} zoom={13} scrollWheelZoom={false} whenCreated={map => this.setState({ map })}>
@@ -42,6 +42,9 @@ class App extends React.Component {
                 </Popup>
               </Marker>
             </MapContainer>
+            <div id="searchbar">
+            <SearchBar changePos = {this.changePos.bind(this)}></SearchBar>
+            </div>
           </div>
       </div>
       </ChakraProvider>
