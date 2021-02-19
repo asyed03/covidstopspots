@@ -11,7 +11,7 @@ body {
 
 #map {
   display: block;
-  margin: auto;
+  margin-top: 10px;
   padding: auto;
 }
 
