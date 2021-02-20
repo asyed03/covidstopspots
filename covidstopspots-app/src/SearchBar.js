@@ -1,6 +1,5 @@
 import './SearchBar.css';
 import * as React from "react";
-import { Box, ChakraProvider } from "@chakra-ui/react";
 import Geocode from "react-geocode";
 
 class SearchBar extends React.Component {
@@ -9,7 +8,7 @@ class SearchBar extends React.Component {
     this.state = {
       inputValue: "",
     }
-    Geocode.setApiKey("AIzaSyBoJbAbUKMLOxpwTIz76GgK0Fq00n1LbYo");
+    Geocode.setApiKey(`${process.env.REACT_APP_GEOCODE_API}`);
     Geocode.setLanguage("en");
     Geocode.setLocationType("ROOFTOP");
   }
@@ -17,15 +16,14 @@ class SearchBar extends React.Component {
 
   render () {
     return (
-      <ChakraProvider>
             <div>
               Type Address: <input type= "text" onChange={event => {this.setState({inputValue: event.target.value})}} onKeyPress={event => {
-                if (event.key === 'Enter') {
+                if (event.key === 'Enter' && this.state.inputValue != "") {
                   Geocode.fromAddress(this.state.inputValue).then(
                     (response) => {
                       const { lat, lng } = response.results[0].geometry.location;
                       console.log(lat, lng);
-                      this.props.changePos([lat, lng], 15);
+                      this.props.changePos([lat, lng], 14);
                     },
                     (error) => {
                       console.error(error);
@@ -34,7 +32,6 @@ class SearchBar extends React.Component {
                 }
               }}></input>
               </div>
-      </ChakraProvider>
     )
   }
 }
