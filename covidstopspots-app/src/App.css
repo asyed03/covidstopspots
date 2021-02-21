@@ -28,7 +28,6 @@ body {
   position: absolute;
   border-radius: 10px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: rgb(177, 207, 202);
   top: 5%;
   left: 50%;  
   transform: translate(-50%, -50%);

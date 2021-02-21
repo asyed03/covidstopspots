@@ -77,6 +77,9 @@ class App extends React.Component {
               information="random point"
             ></CovidPoint> */}
             <LocationMarkers points={this.state.points} fetchPoints={this.fetchPoints}></LocationMarkers>
+            <div id="searchbar">
+            <SearchBar changePos={this.changePos}/>
+            </div>
           </MapContainer>
         </div>
       </div>
