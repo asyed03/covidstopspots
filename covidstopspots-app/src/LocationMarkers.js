@@ -11,7 +11,12 @@ function LocationMarkers(props) {
       setPosition([lat, lng]);
       const newPoints = [...props.points];
       console.log(newPoints);
-      newPoints.push(<CovidPoint position={position} input={true}></CovidPoint>);
+      newPoints.push(<CovidPoint
+        position={[lat, lng]}
+        name="test"
+        information="test"
+        input = {true}
+      ></CovidPoint>);
       props.fetchPoints(newPoints);
     }
   });

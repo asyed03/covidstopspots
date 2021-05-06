@@ -1,5 +1,6 @@
 import './App.css';
 import * as React from "react";
+import firebase from "./firebase";
 import { ChakraProvider } from "@chakra-ui/react";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -18,12 +19,6 @@ class App extends React.Component {
       name="point1"
       information="random point"
       input = {false}
-    ></CovidPoint>,
-    <CovidPoint
-      position={[50.653226, -79.3831843]}
-      name="point2"
-      information="random point"
-      input = {true}
     ></CovidPoint>]
     }
   }
@@ -34,13 +29,22 @@ class App extends React.Component {
   }
 
   fetchPoints = (newPoints) => {
+    // fetch info from database
+    const ref = firebase.database().ref("points")
+    const pointsref = ref.push()
+    pointsref.set(newPoints)
     this.setState({points: newPoints})
-    this.state.points.length > 0 && this.state.points.map(
-      (point) => {
-        return point
-      }
-      ) 
   }
+
+  componentDidMount() {
+    const ref = firebase.database().ref("points")
+    ref.on("value", snapshot => {
+      console.log("FireB ",snapshot)
+      if (snapshot && snapshot.exists()) {
+        this.setState({points: snapshot.val})
+      }})
+    console.log("page loaded!")
+ }
 
   render() {
     return (
@@ -63,7 +67,8 @@ class App extends React.Component {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             {this.state.points.length > 0 && this.state.points.map(
-      (point) => {
+      (point, index) => {
+        <li key={index}></li>
         return point
       }) }
             {/* <CovidPoint
